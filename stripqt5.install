@@ -1,0 +1,7 @@
+post_install() {
+	for  f in `ls /usr/lib/libQt5*.so*`;
+	do
+		echo "Stripping \"$f\"."
+		/usr/bin/strip --remove-section=.note.ABI-tag "$f"
+	done
+}
