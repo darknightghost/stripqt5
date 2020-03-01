@@ -1,0 +1,11 @@
+[Trigger]
+Type = File
+Operation = Install
+Operation = Upgrade
+Target = usr/lib/libQt5*.so*
+
+[Action]
+Description = Striping QT5 libs....
+When = PostTransaction
+Exec = /bin/sh -c 'while read -r f; do echo "Stripping \"$f\".";/usr/bin/strip --remove-section=.note.ABI-tag "$f"; done'
+NeedsTargets
